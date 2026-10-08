@@ -1,0 +1,13 @@
+{
+  "name": "ste100",
+  "displayName": "STE100 Writing Style",
+  "version": "0.1.0",
+  "description": "Always-on plain writing style based on ASD-STE100 principles, without the fixed vocabulary. Three levels: strict, standard, terse.",
+  "author": {
+    "name": "Result ID",
+    "email": "sifron@resultid.com"
+  },
+  "repository": "https://github.com/Resultid/resultid-ste100-skill",
+  "license": "MIT",
+  "keywords": ["writing", "style", "ste100", "plain-language", "technical-writing"]
+}
