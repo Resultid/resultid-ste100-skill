@@ -16,6 +16,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 RULES = ROOT / "skills" / "ste100" / "rules.md"
 DIST = ROOT / "dist"
+CODEX_AGENTS = ROOT / "AGENTS.md"
+CODEX_SKILL_RULES = ROOT / ".agents" / "skills" / "ste100" / "rules.md"
 LEVELS = ("strict", "standard", "terse")
 MAX_CHARS = 9000  # the SessionStart hook accepts at most 10,000 characters
 
@@ -106,6 +108,22 @@ def main(argv):
             DIST.mkdir(exist_ok=True)
             path.write_text(built, encoding="utf-8")
             print(f"wrote {path.relative_to(ROOT)} ({len(built)} characters)")
+    standard = build("standard", text)
+    if check:
+        current_agents = CODEX_AGENTS.read_text(encoding="utf-8") if CODEX_AGENTS.exists() else None
+        if current_agents != standard:
+            print("AGENTS.md is out of date. Run scripts/build_prompt.py.")
+            failed = True
+        current_skill_rules = CODEX_SKILL_RULES.read_text(encoding="utf-8") if CODEX_SKILL_RULES.exists() else None
+        if current_skill_rules != text:
+            print(".agents/skills/ste100/rules.md is out of date. Run scripts/build_prompt.py.")
+            failed = True
+    else:
+        CODEX_AGENTS.write_text(standard, encoding="utf-8")
+        CODEX_SKILL_RULES.parent.mkdir(parents=True, exist_ok=True)
+        CODEX_SKILL_RULES.write_text(text, encoding="utf-8")
+        print(f"wrote {CODEX_AGENTS.relative_to(ROOT)} ({len(standard)} characters)")
+        print(f"wrote {CODEX_SKILL_RULES.relative_to(ROOT)}")
     if check and not failed:
         print("dist/ matches rules.md")
     return 1 if failed else 0

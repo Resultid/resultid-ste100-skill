@@ -1,6 +1,6 @@
 ---
 name: ste100
-description: Plain writing style based on ASD-STE100 principles, without the fixed vocabulary. A SessionStart hook injects the active level in every session. Load this skill to read the full rules and examples when you write or rewrite instructions, error messages, tool descriptions, or inter-agent text.
+description: Plain writing style based on ASD-STE100 principles, without the fixed vocabulary. Claude Code receives its active level from a SessionStart hook. Codex uses AGENTS.md for automatic style instructions. Load this skill for the full rules and examples.
 user-invocable: false
 ---
 
@@ -11,7 +11,7 @@ This skill applies most of the STE100 discipline, without the fixed vocabulary. 
 ## How to use this skill
 
 1. Read [rules.md](rules.md). It is the source of truth for the rules, the three levels, and the before/after examples.
-2. Find the active level in the session context. The SessionStart hook states it. If the context has no level, use `standard`. If the level is `off`, do not apply this style.
+2. Find the active level in the session context. Claude Code's SessionStart hook states it. Codex gets its default from `AGENTS.md`. If no level is set, use `standard`. If the level is `off`, do not apply this style.
 3. Apply the rules of that level to the prose you write.
 4. Do not rewrite the items in the "Never rewrite" section of rules.md.
 5. Follow the "Precedence" section: project rules and the project glossary win. Write code, commit messages, and security warnings in normal style.
@@ -22,7 +22,7 @@ This skill applies most of the STE100 discipline, without the fixed vocabulary. 
 - `standard` (default): chat replies and explanations.
 - `terse`: the standard rules, then no filler and no repeated context. Keep full grammar.
 
-The user changes the level with `/ste100:ste100 level strict|standard|terse|off`. The environment variable `STE100_LEVEL` overrides the saved level.
+In Claude Code, the user changes the level with `/ste100:ste100 level strict|standard|terse|off`. The environment variable `STE100_LEVEL` overrides the saved level. In Codex, the user changes the active level in the applicable `AGENTS.md` instructions.
 
 ## When a rewrite would lose meaning
 

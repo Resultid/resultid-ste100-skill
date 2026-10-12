@@ -1,6 +1,6 @@
 # resultid-ste100-skill
 
-A Claude Code plugin that makes Claude write in a plain, consistent style. The style follows most of the STE100 discipline, without the fixed vocabulary. The plugin is on in every session. It works for chat replies, text for other agents, and development work.
+A Claude Code plugin and Codex companion that apply a plain, consistent writing style. The style follows most of the STE100 discipline, without the fixed vocabulary. Claude Code uses a SessionStart hook. Codex uses automatic `AGENTS.md` instructions and a discoverable skill.
 
 The readers can be people who do not speak English as a first language, other LLM agents, and translators. For these readers, clarity matters more than saving tokens.
 
@@ -31,6 +31,22 @@ The next session starts with the `standard` level. To remove the plugin, run `cl
 3. The skill in `skills/ste100/` holds the full rules and examples. Claude can read it when it writes instructions or rewrites text.
 
 A skill alone is not enough, because Claude loads a skill only when its description matches the task. The hook makes the style apply to every reply.
+
+## Use with Codex
+
+Codex reads `AGENTS.md` automatically. This repository's root `AGENTS.md` applies the standard level in every Codex session in this repository. The `.agents/skills/ste100/` folder makes the full skill available to Codex when a writing task needs its examples.
+
+To apply the standard level across all Codex projects for your user, copy the generated prompt and skill into Codex's user configuration:
+
+```sh
+cp dist/prompt.standard.txt ~/.codex/AGENTS.md
+mkdir -p ~/.codex/skills/ste100
+cp .agents/skills/ste100/SKILL.md .agents/skills/ste100/rules.md ~/.codex/skills/ste100/
+```
+
+This replaces `~/.codex/AGENTS.md`. If that file already contains other instructions, append the contents of `dist/prompt.standard.txt` instead. Restart Codex after you install or change a skill.
+
+To change the default, replace `standard` with `strict` or `terse` in the copy command. To turn the style off globally, remove the STE100 instructions from `~/.codex/AGENTS.md`. The skill remains available for tasks that need its detailed rules.
 
 ## Levels
 
@@ -106,7 +122,7 @@ To check that `dist/` matches `rules.md`, run:
 python3 scripts/build_prompt.py --check
 ```
 
-The command exits with code 1 when a file is out of date. Run it in CI.
+The command also updates the repo's `AGENTS.md` and the Codex skill's copy of `rules.md`. It exits with code 1 when a generated file is out of date. Run it in CI.
 
 ## Lint
 
