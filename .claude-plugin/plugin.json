@@ -1,7 +1,7 @@
 {
   "name": "ste100",
   "displayName": "STE100 Writing Style",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Always-on plain writing style based on ASD-STE100 principles, without the fixed vocabulary. Three levels: strict, standard, terse.",
   "author": {
     "name": "Result ID",

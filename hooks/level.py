@@ -6,7 +6,7 @@ Precedence for the active level:
 2. The state file `level` in the plugin data directory.
 3. The default, `standard`.
 
-CLI (used by the /ste100 command):
+CLI (used by the /ste100:level command):
     level.py --data-dir DIR [level] [strict|standard|terse|off]
     level.py --data-dir DIR status
 Python stdlib only.

@@ -64,10 +64,10 @@ Terse does not mean telegraphic. The `terse` level never drops articles and neve
 Type this command in a session:
 
 ```
-/ste100:ste100 level terse
+/ste100:level level terse
 ```
 
-The command saves the level and applies it to the current session. New sessions use the saved level. The command saves the level for the user, not for one session. Use `/ste100:ste100 status` to see the active level.
+The command saves the level and applies it to the current session. New sessions use the saved level. The command saves the level for the user, not for one session. Use `/ste100:level status` to see the active level.
 
 To set the level for one session or one service, set the environment variable `STE100_LEVEL`. The variable wins over the saved level.
 
@@ -145,7 +145,7 @@ The linter uses only the Python standard library. The code adapts parts of `ste-
 
 ## Known limits
 
-- **Command name.** Claude Code names plugin commands `/<plugin>:<command>`. The command is `/ste100:ste100`. Typing `/ste100` alone did not work in headless mode.
+- **Command name.** Claude Code names plugin commands `/<plugin>:<command>`. The command is `/ste100:level`. Typing `/ste100` alone does not run the command, because the skill `ste100` is not user-invocable.
 - **Python.** The hook needs `python3` on the `PATH`. The scripts use only the standard library.
 - **No dictionary.** The plugin applies the principle of plain words and consistent words. It does not check text against a word list. It does not claim compliance with the ASD-STE100 standard.
 - **Models drift.** Long sessions can drift from the style. The hook adds the prompt again after a compaction or a clear.

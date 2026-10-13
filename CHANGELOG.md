@@ -2,6 +2,10 @@
 
 This file lists all notable changes. Product services pin a release tag. Each tag holds the `dist/` files that the build script generated from `skills/ste100/rules.md` at that tag.
 
+## 0.1.1
+
+- Fix the command name clash. The command had the same name as the skill `ste100`, so `/ste100` showed "This skill can only be invoked by Claude". Rename `commands/ste100.md` to `commands/level.md`. The command is now `/ste100:level level strict|standard|terse|off`.
+
 ## 0.1.0
 
 First release.
