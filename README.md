@@ -148,7 +148,7 @@ The linter uses only the Python standard library. The code adapts parts of `ste-
 - **Command name.** Claude Code names plugin commands `/<plugin>:<command>`. The command is `/ste100:level`. Typing `/ste100` alone does not run the command, because the skill `ste100` is not user-invocable.
 - **Python.** The hook needs `python3` on the `PATH`. The scripts use only the standard library.
 - **No dictionary.** The plugin applies the principle of plain words and consistent words. It does not check text against a word list. It does not claim compliance with the ASD-STE100 standard.
-- **Models drift.** Long sessions can drift from the style. The hook adds the prompt again after a compaction or a clear.
+- **Models drift.** Long sessions can drift from the style. The `SessionStart` hook adds the full prompt at the start and again after a compaction or a clear. A `UserPromptSubmit` hook adds one short reminder line on every prompt. The reminder costs about 30 tokens for each prompt. It reduces drift but does not remove it.
 - **Added content.** Even with the rules, a model sometimes adds a small fix or cause that the source does not state. See the eval report.
 - **Level scope.** The saved level is the same for every session of the user. Use `STE100_LEVEL` for one session.
 - **Local install.** A marketplace added from a local path copies all files in that directory, including files that git ignores.

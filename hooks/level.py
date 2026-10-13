@@ -66,6 +66,17 @@ def prompt_text(level):
     return path.read_text(encoding="utf-8")
 
 
+REMINDERS = {
+    "strict": "STE100 strict style is active. Apply every rule in full: one instruction per sentence, numbered steps, no contractions. Keep articles, hedges, and the strength of each requirement.",
+    "standard": "STE100 standard style is active. Write full sentences with articles, one idea per sentence, and one word for one concept. Keep hedges and the strength of each requirement.",
+    "terse": "STE100 terse style is active. Remove filler, but keep full sentences, articles, hedges, conditions, numbers, and units. Use one word for one concept.",
+}
+
+
+def reminder_text(level):
+    return REMINDERS[level]
+
+
 def main(argv):
     parser = argparse.ArgumentParser(description="Show or set the STE100 level.")
     parser.add_argument("--data-dir", default=os.environ.get("CLAUDE_PLUGIN_DATA", ""))

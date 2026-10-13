@@ -2,6 +2,12 @@
 
 This file lists all notable changes. Product services pin a release tag. Each tag holds the `dist/` files that the build script generated from `skills/ste100/rules.md` at that tag.
 
+## 0.1.3
+
+- Add a `UserPromptSubmit` hook, `hooks/prompt_reminder.py`. It adds one short reminder of the active level on every prompt, to reduce drift in long sessions. It prints nothing when the level is `off`.
+- Add `tests/test_hooks.py`. Run it with `python3 -m unittest discover -s tests -v`.
+- Correct the README note about drift.
+
 ## 0.1.2
 
 - Clarify the plugin description and the first line of the README: the plugin is an always-on response style, not a document rewriter and not the ASD-STE100 standard.
