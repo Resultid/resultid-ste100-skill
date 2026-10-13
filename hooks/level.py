@@ -7,7 +7,7 @@ Precedence for the active level:
 3. The default, `standard`.
 
 CLI (used by the /ste100:level command):
-    level.py --data-dir DIR [level] [strict|standard|terse|off]
+    level.py --data-dir DIR strict|standard|terse|off
     level.py --data-dir DIR status
 Python stdlib only.
 """
@@ -72,8 +72,6 @@ def main(argv):
     parser.add_argument("words", nargs="*")
     args = parser.parse_args(argv)
     words = [w.lower() for w in args.words]
-    if words[:1] == ["level"]:
-        words = words[1:]
 
     if words and words[0] != "status":
         level = normalize(words[0])

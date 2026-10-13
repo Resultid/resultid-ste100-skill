@@ -22,7 +22,7 @@ This skill applies most of the STE100 discipline, without the fixed vocabulary. 
 - `standard` (default): chat replies and explanations.
 - `terse`: the standard rules, then no filler and no repeated context. Keep full grammar.
 
-In Claude Code, the user changes the level with `/ste100:level level strict|standard|terse|off`. The environment variable `STE100_LEVEL` overrides the saved level. In Codex, the user changes the active level in the applicable `AGENTS.md` instructions.
+In Claude Code, the user changes the level with `/ste100:level strict|standard|terse|off`. The environment variable `STE100_LEVEL` overrides the saved level. In Codex, the user changes the active level in the applicable `AGENTS.md` instructions.
 
 ## When a rewrite would lose meaning
 

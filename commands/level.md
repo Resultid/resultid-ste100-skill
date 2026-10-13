@@ -1,6 +1,6 @@
 ---
 description: Show or set the STE100 writing level (strict, standard, terse, off)
-argument-hint: level strict|standard|terse|off
+argument-hint: strict|standard|terse|off|status
 allowed-tools: Bash(python3 *)
 ---
 

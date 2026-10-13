@@ -64,7 +64,7 @@ Terse does not mean telegraphic. The `terse` level never drops articles and neve
 Type this command in a session:
 
 ```
-/ste100:level level terse
+/ste100:level terse
 ```
 
 The command saves the level and applies it to the current session. New sessions use the saved level. The command saves the level for the user, not for one session. Use `/ste100:level status` to see the active level.
