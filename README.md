@@ -143,6 +143,56 @@ The linter uses only the Python standard library. The code adapts parts of `ste-
 
 `evals/cases.jsonl` holds 20 prompts. `evals/run_evals.md` explains how to run them with and without the plugin. `evals/report.md` shows the results for this release.
 
+### Measured token use and quality
+
+The plugin makes replies shorter, but it adds input tokens. Over a session of about 12 replies, the saved output tokens outweigh the added input tokens. A single reply costs more than the baseline.
+
+Both tests ran `claude -p` with and without the plugin. The model was the `sonnet` alias. Tools were off. The runs used an empty directory and `--setting-sources project`, so no other plugin or `CLAUDE.md` changed the result. The token counts come from the `usage` object of each run. The runs used Claude Code 2.1.281 on 2026-10-13.
+
+**One reply.** 20 prompts, 3 samples for each prompt and condition, 240 runs. The change is the mean of the per-prompt changes.
+
+| Condition | Output tokens per reply | Change | Words per reply | Hard lint findings per reply | Input tokens per reply |
+| --- | --- | --- | --- | --- | --- |
+| baseline | 238 | | 91 | 0.90 | 10,677 |
+| strict | 131 | -30% | 64 | 0.07 | 12,501 |
+| standard | 144 | -23% | 70 | 0.08 | 12,566 |
+| terse | 99 | -47% | 42 | 0.10 | 12,311 |
+
+The plugin adds about 1,800 input tokens to each run. In a single reply, this extra input costs more than the output saves. The mean cost of one reply was higher by 28% at `strict`, 23% at `standard`, and 20% at `terse`.
+
+**One session.** 12 prompts in one resumed session, 3 sessions for each condition. The cost is the `total_cost_usd` value that Claude Code reports.
+
+| Condition | Output tokens per session | Change | Input tokens per session | Cost per session (USD) | Change |
+| --- | --- | --- | --- | --- | --- |
+| baseline | 3,177 | | 189,029 | 1.046 | |
+| standard | 2,539 | -20% | 208,601 | 0.971 | -7% |
+| terse | 1,813 | -43% | 194,856 | 0.850 | -19% |
+
+Each condition costs more than the baseline at first. The cumulative cost of `terse` falls below the baseline at the fourth turn. The cumulative cost of `standard` falls below it at the seventh turn. After that, the gap grows with each turn.
+
+**What the numbers show**
+- Output tokens fall by 20% to 47%, depending on the level.
+- Hard lint findings fall from 0.90 to about 0.1 per reply. The linter checks form only. The trait checks and the manual review in `evals/report.md` cover meaning.
+- Some prompts get longer replies. In the test, `T-06` (code and a commit message) grew by 28% to 34% at `strict` and `standard`. The plugin does not shorten code.
+- The percentage saved in cost is smaller than the percentage saved in output tokens. Input tokens make up most of the cost of a session.
+
+**Limits of these numbers**
+- The sample is small: 3 samples for each cell, one model, and 12 turns. A difference of a few percent is noise.
+- The sessions had no tools. A real coding session has large tool results. They add input tokens that no writing style changes, so the share saved in cost is probably smaller there. I did not measure it.
+- The cost uses list prices and depends on cache behavior, which varies from run to run.
+- I did not test `strict` in the session test.
+
+To repeat the tests, run these commands from the repository root:
+
+```
+python3 evals/measure_tokens.py run evals/token_results.jsonl 3
+python3 evals/measure_tokens.py summary evals/token_results.jsonl
+python3 evals/measure_tokens.py session evals/session_results.jsonl 3
+python3 evals/measure_tokens.py session-summary evals/session_results.jsonl
+```
+
+The raw outputs are in `evals/token_results.jsonl` and `evals/session_results.jsonl`.
+
 ## Known limits
 
 - **Command name.** Claude Code names plugin commands `/<plugin>:<command>`. The command is `/ste100:level`. Typing `/ste100` alone does not run the command, because the skill `ste100` is not user-invocable.

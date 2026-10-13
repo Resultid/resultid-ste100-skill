@@ -2,6 +2,12 @@
 
 This file lists all notable changes. Product services pin a release tag. Each tag holds the `dist/` files that the build script generated from `skills/ste100/rules.md` at that tag.
 
+## 0.1.4
+
+- Add `evals/measure_tokens.py`. It measures output tokens, input tokens, cost, and lint findings with and without the plugin, for single replies and for 12-turn sessions.
+- Add the raw results in `evals/token_results.jsonl` and `evals/session_results.jsonl`.
+- Add the section "Measured token use and quality" to the README.
+
 ## 0.1.3
 
 - Add a `UserPromptSubmit` hook, `hooks/prompt_reminder.py`. It adds one short reminder of the active level on every prompt, to reduce drift in long sessions. It prints nothing when the level is `off`.
