@@ -1,6 +1,6 @@
 # resultid-ste100-skill
 
-A Claude Code plugin and Codex companion that apply a plain, consistent writing style. The style follows most of the STE100 discipline, without the fixed vocabulary. Claude Code uses a SessionStart hook. Codex uses automatic `AGENTS.md` instructions and a discoverable skill.
+An always-on plain-writing style for Claude Code replies, inspired by ASD-STE100. It is not a document rewriter and not the standard. It is a Claude Code plugin with a Codex companion. The style follows most of the STE100 discipline, without the fixed vocabulary. Claude Code uses a SessionStart hook. Codex uses automatic `AGENTS.md` instructions and a discoverable skill.
 
 The readers can be people who do not speak English as a first language, other LLM agents, and translators. For these readers, clarity matters more than saving tokens.
 

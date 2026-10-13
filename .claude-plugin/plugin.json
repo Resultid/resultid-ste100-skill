@@ -2,7 +2,7 @@
   "name": "ste100",
   "displayName": "STE100 Writing Style",
   "version": "0.1.2",
-  "description": "Always-on plain writing style based on ASD-STE100 principles, without the fixed vocabulary. Three levels: strict, standard, terse.",
+  "description": "Always-on plain-writing style for Claude Code replies, inspired by ASD-STE100. Not a document rewriter and not the standard. Levels: strict, standard (default), terse.",
   "author": {
     "name": "Result ID",
     "email": "sifron@resultid.com"

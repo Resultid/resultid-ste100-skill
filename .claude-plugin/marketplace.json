@@ -1,6 +1,6 @@
 {
   "name": "resultid-ste100-skill",
-  "description": "STE100 writing style plugin for Claude Code",
+  "description": "Always-on plain-writing style for Claude Code, inspired by ASD-STE100",
   "owner": {
     "name": "Result ID",
     "email": "sifron@resultid.com"
@@ -9,7 +9,7 @@
     {
       "name": "ste100",
       "source": "./",
-      "description": "Always-on plain writing style based on ASD-STE100 principles, without the fixed vocabulary. Levels: strict, standard (default), terse."
+      "description": "Always-on plain-writing style for Claude Code replies, inspired by ASD-STE100. Not a document rewriter and not the standard. Levels: strict, standard (default), terse."
     }
   ]
 }

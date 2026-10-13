@@ -4,6 +4,7 @@ This file lists all notable changes. Product services pin a release tag. Each ta
 
 ## 0.1.2
 
+- Clarify the plugin description and the first line of the README: the plugin is an always-on response style, not a document rewriter and not the ASD-STE100 standard.
 - Drop the extra word `level` from the command. Use `/ste100:level terse`. The old form `/ste100:level level terse` no longer works. Change the argument hint to `strict|standard|terse|off|status`.
 
 ## 0.1.1
