@@ -7,6 +7,7 @@ This file lists all notable changes. Product services pin a release tag. Each ta
 - Add `evals/measure_tokens.py`. It measures output tokens, input tokens, cost, and lint findings with and without the plugin, for single replies and for 12-turn sessions.
 - Add the raw results in `evals/token_results.jsonl` and `evals/session_results.jsonl`.
 - Add the section "Measured token use and quality" to the README.
+- Describe the plugin in the README as a lightweight plugin for readability and token reduction, and add a comparison with Caveman.
 
 ## 0.1.3
 

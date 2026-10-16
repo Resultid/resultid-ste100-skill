@@ -1,10 +1,22 @@
 # resultid-ste100-skill
 
-An always-on plain-writing style for Claude Code replies, inspired by ASD-STE100. It is not a document rewriter and not the standard. It is a Claude Code plugin with a Codex companion. The style follows most of the STE100 discipline, without the fixed vocabulary. Claude Code uses a SessionStart hook. Codex uses automatic `AGENTS.md` instructions and a discoverable skill.
+A lightweight Claude Code plugin that makes replies easier to read and shorter. It applies a plain, consistent writing style, inspired by ASD-STE100. It is not a document rewriter and not the standard. The repository also includes a Codex companion.
 
-The readers can be people who do not speak English as a first language, other LLM agents, and translators. For these readers, clarity matters more than saving tokens.
+The plugin has two hooks, one skill, and one command. It uses only the Python standard library. It needs no proxy, no account, and no network access.
+
+**Readability.** The style keeps full sentences and articles. It keeps every hedge and the strength of each requirement ("must", "should", "can"). People who do not speak English as a first language, other LLM agents, and translators can read the replies.
+
+**Token reduction.** In the tests below, replies had 20% to 47% fewer output tokens, depending on the level. The injected rules add input tokens, so one reply costs more than without the plugin. Over a session of 12 replies, the total cost was 7% lower at `standard` and 19% lower at `terse`. Clarity comes first, and token reduction is the second benefit.
 
 > Not affiliated with or certified by ASD. Inspired by ASD-STE100 principles. Does not include the official dictionary and does not claim compliance with the standard.
+
+## Compared with Caveman
+
+Caveman is a larger system. Its CLI adds a local proxy, hooks, and tools. This plugin only sets the writing style of the replies.
+
+- Caveman drops articles and writes fragments, so it can cut more output tokens. This plugin keeps full grammar, so its output is easier to read and to translate.
+- The tests in this README measure only this plugin. They do not compare it with Caveman.
+- Run only one of the two styles at a time. When both are on, their rules conflict and the result is hard to predict.
 
 ## Install
 
